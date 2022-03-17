@@ -1,13 +1,16 @@
 const express = require('express');
 const db = require('./config/connection');
-// Require model
-const { User, Thought } = require('./models');
+const routes = require('./controllers/api')
 
 const PORT = process.env.PORT || 3001;
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(routes);
 
-
-// TODO: link to api folder?
+db.once('open', () => {
+    app.listen(PORT, () => {
+        console.log('server is running on PORT')
+    });
+});
