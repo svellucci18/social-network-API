@@ -21,11 +21,6 @@ const userSchema = new mongoose.Schema({
   ]
 });
 
-// Using mongoose.model() to compile a model based on the schema
-// 'User' is the name of the model
-// userSchema is the name of the schema we are using to create a new instance of the model
-const User = mongoose.model('User', userSchema);
-
 // virtual retrieves the olength of the user's friends array field on query
 userSchema.virtual('friendCount').get(function () {
     return this.friends.length;
@@ -34,5 +29,9 @@ userSchema.virtual('friendCount').get(function () {
 // Error handler function to be called when an error occurs when trying to save a document
 const handleError = (err) => console.error(err);
 
+// Using mongoose.model() to compile a model based on the schema
+// 'User' is the name of the model
+// userSchema is the name of the schema we are using to create a new instance of the model
+const User = mongoose.model('User', userSchema);
 module.exports = User;
 
