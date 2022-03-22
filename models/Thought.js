@@ -1,9 +1,9 @@
 // Define Mongoose
-const { mongoose, Schema} = require('mongoose');
+const { Schema, model} = require('mongoose');
 const dateFormat = require('../utils/dateFormat')
 
 // Create a new instance of the Mongoose schema to define shape of each document
-const reactionSchema = new mongoose.Schema({
+const reactionSchema = new Schema({
   // Add individual properties and their types
     reactionId: {
       type: Schema.Types.ObjectId,
@@ -32,7 +32,7 @@ const reactionSchema = new mongoose.Schema({
 });
 
 // Create a new instance of the Mongoose schema to define shape of each document
-const thoughtSchema = new mongoose.Schema({
+const thoughtSchema = new Schema({
     // TODO: Add individual properties and their types
     thoughtText: {
         type: String,
@@ -66,9 +66,9 @@ thoughtSchema.virtual('reactionsCount').get(function () {
 // Error handler function to be called when an error occurs when trying to save a document
 const handleError = (err) => console.error(err);
 
-// Using mongoose.model() to compile a model based on the schema
+// Using model() to compile a model based on the schema
 // 'Thought' is the name of the model
 // thoughtSchema is the name of the schema we are using to create a new instance of the model
-const Thought = mongoose.model('Thought', thoughtSchema); //if this fails move this after the virtual
+const Thought = model('Thought', thoughtSchema); //if this fails move this after the virtual
 
 module.exports = Thought;

@@ -1,3 +1,4 @@
+const res = require('express/lib/response');
 const { Thought, User } = require('../models');
 
 // methods to query the database
@@ -5,7 +6,8 @@ const userController = {
     // Get users
     getUsers(req, res) {
         User.find()
-            .then((courses) => res.json(courses))
+            .select(-__v)
+            .then((users) => res.json(users))
             .catch((err) => res.status(500).json(err));
     },
     // Get a user
