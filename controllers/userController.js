@@ -51,7 +51,7 @@ const userController = {
             ? res.status(404).json({ message: 'No user with that ID' })
             : Student.deleteMany({ _id: { $in: user.students } })
         )
-        .then(() => res.json({ message: 'User and students deleted!' }))
+        .then(() => res.json({ message: 'User deleted!' }))
         .catch((err) => res.status(500).json(err));
     },
     // POST to add a friend to a user's friend list
